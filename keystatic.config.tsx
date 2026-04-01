@@ -1,5 +1,4 @@
 import { config } from '@keystatic/core'
-import { KEYSTATIC_STORAGE_KIND } from 'astro:env/client'
 import { bicyclenetworkpagesKeystatic } from 'keystatic/bicyclenetworkPagesKeystatic'
 import { HomepageIntroKeystatic, HomepageMainKeystatic } from 'keystatic/homepageKeystatic'
 import { keystaticImprintPageConfig } from 'keystatic/imprintKeystatic'
@@ -24,7 +23,7 @@ import {
 export default config({
   storage: {
     // https://keystatic.com/docs/github-mode#setting-up-git-hub-mode
-    kind: KEYSTATIC_STORAGE_KIND,
+    kind: "github",
     repo: {
       owner: 'FixMyBerlin',
       name: 'nudafa',
