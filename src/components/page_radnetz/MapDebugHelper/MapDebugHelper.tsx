@@ -46,7 +46,7 @@ export const MapDebugHelper = () => {
     try {
       const url = mainMap?.getSprite()?.at(0)?.url
       if (url) {
-        fetch(`${url}@2x.json?key=ECOoUBmpqklzSCASXxcu`)
+        fetch(`${url}@2x.json?key=UUwM2nWp8LEfn1vWc4fW`)
           .then((response) => response.json())
           // @ts-expect-error ignore "unkown" type
           .then((data) => setSprites(data))

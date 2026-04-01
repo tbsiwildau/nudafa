@@ -2,7 +2,7 @@ import type { LngLatBoundsLike } from 'maplibre-gl'
 
 // Style: https://cloud.maptiler.com/maps/fe7d06df-9fbd-43f3-bd9e-8f394e41efd0/
 export const MAPTILER_STYLE =
-  'https://api.maptiler.com/maps/fe7d06df-9fbd-43f3-bd9e-8f394e41efd0/style.json?key=ECOoUBmpqklzSCASXxcu'
+  'https://api.maptiler.com/maps/streets/style.json?key=UUwM2nWp8LEfn1vWc4fW'
 
 // https://maplibre.org/maplibre-gl-js/docs/API/classes/Map/#setmaxbounds
 export const MAX_BOUNDS = [
