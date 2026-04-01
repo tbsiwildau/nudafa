@@ -1,13 +1,16 @@
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import react from '@astrojs/react';
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx'
+import netlify from '@astrojs/netlify'
+import react from '@astrojs/react'
+import sitemap from '@astrojs/sitemap'
+import tailwind from '@astrojs/tailwind'
+import keystatic from '@keystatic/astro'
+import { defineConfig } from 'astro/config'
 
 export default defineConfig({
-  site: 'https://th-wildau-nudafa.netlify.app/',
+  site: process.env.URL ?? 'https://th-wildau-nudafa.netlify.app/',
 
   integrations: [
+    keystatic(),
     tailwind(),
     react(),
     mdx(),
@@ -15,12 +18,15 @@ export default defineConfig({
       filter: (page) => page !== 'https://th-wildau-nudafa.netlify.app/radnetz/admin/',
     }),
   ],
+
   output: 'static',
-  // adapter: netlify(),
+  
+  adapter: netlify(),
+
   redirects: {
     '/info': '/',
     '/forschungsprojekt': '/',
     '/radnetzplanung': '/radnetz/einleitung',
     '/massnahmen/admin': '/massnahmen/admin/geodata-check',
   },
-});
+})

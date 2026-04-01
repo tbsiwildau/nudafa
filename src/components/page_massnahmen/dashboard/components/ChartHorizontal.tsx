@@ -23,6 +23,26 @@ export const ChartHorizontal = ({
   className,
 }: Props) => {
   const maxValue = Math.max(...data.map(({ values }) => values.map(({ value }) => value)).flat())
+  const isDev = import.meta.env.DEV
+
+    // QA of the data
+  if (isDev) {
+    if (!title) console.log('ChartHorizontal', 'ERROR', 'missing `title`')
+
+    const colorsWithoutLegend = data
+      .map(({ values }) => values.map(({ color }) => color))
+      .flat()
+      .filter((color) => !legend.find(({ color: legendColor }) => legendColor === color))
+    if (colorsWithoutLegend.length > 0)
+      console.log(
+        'ChartHorizontal',
+        'ERROR',
+        'missing `legend` for color',
+        colorsWithoutLegend,
+        'for Chart',
+        { title, data, legend, source },
+      )
+  }
 
   return (
     <figure className={className}>
