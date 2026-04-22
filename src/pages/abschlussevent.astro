@@ -1,15 +1,12 @@
 ---
 import PageHeader from '@components/PageHeader.astro'
-import H3 from '@components/Text/H3.astro'
 import LayoutPage from '@components/layouts/LayoutPage.astro'
-import Section from '@components/layouts/Section.astro'
-import Link from '@components/links/Link.astro'
 import { getEntry, render } from 'astro:content'
 
 const page = await getEntry('event', 'index')
 if (page === undefined) return Astro.redirect('/404')
 
-const { title, subTitle, mediaLinks } = page.data
+const { title, subTitle } = page.data
 const { Content } = await render(page)
 ---
 
