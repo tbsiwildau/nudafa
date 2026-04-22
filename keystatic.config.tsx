@@ -1,5 +1,6 @@
 import { config } from '@keystatic/core'
 import { bicyclenetworkpagesKeystatic } from 'keystatic/bicyclenetworkPagesKeystatic'
+import { keystaticEventPageConfig } from 'keystatic/eventKeystatic'
 import { HomepageIntroKeystatic, HomepageMainKeystatic } from 'keystatic/homepageKeystatic'
 import { keystaticImprintPageConfig } from 'keystatic/imprintKeystatic'
 import { keystaticMeasuresConfig } from 'keystatic/measuresKeystatic'
@@ -23,9 +24,9 @@ import {
 export default config({
   storage: {
     // https://keystatic.com/docs/github-mode#setting-up-git-hub-mode
-    kind: "github",
+    kind: 'github',
     repo: {
-      owner: 'FixMyBerlin',
+      owner: 'tbsiwildau',
       name: 'nudafa',
     },
     // https://keystatic.com/docs/github-mode
@@ -44,6 +45,7 @@ export default config({
         'persons',
         'researchpage',
         'presspage',
+        'event',
       ],
       Teilprojekte: ['subprojects', 'subprojectstopics', 'communes', 'partners'],
       Radnetz: ['bicyclenetworkages'],
@@ -55,6 +57,7 @@ export default config({
     homepageintro: HomepageIntroKeystatic,
     homepagemain: HomepageMainKeystatic,
     presspage: keystaticPressPageConfig,
+    event: keystaticEventPageConfig,
     researchpage: keystaticResearchPageConfig,
     projectpartnerpageintro: keystaticProjectPartnerPageIntroConfig,
     projectpartnerpagemain: keystaticProjectPartnerPageMainConfig,
