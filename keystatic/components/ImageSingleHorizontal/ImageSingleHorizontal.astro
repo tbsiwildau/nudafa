@@ -1,16 +1,24 @@
 ---
-import { Image, Picture } from 'astro:assets'
+import { Picture } from 'astro:assets'
 import { getImage } from 'keystatic/components/utils/getImage'
 import type { ImageSingleHorizontal } from './keystatic.ImageSingleHorizontal.config'
 
 type Props = ImageSingleHorizontal
 const { src, alt, caption, imageConfig } = Astro.props
 
-const image = getImage(src)
+const isGif = (src?: string) => src?.endsWith('.gif')
+
+// only optimize non-gifs
+const image = isGif(src) ? src : getImage(src)
+
 const ratio = imageConfig.discriminant
-const width = 'value' in imageConfig ? imageConfig.value?.discriminant : undefined
+const width =
+  'value' in imageConfig ? imageConfig.value?.discriminant : undefined
+
 const position =
-  'value' in imageConfig && 'value' in imageConfig.value ? imageConfig.value.value : undefined
+  'value' in imageConfig && 'value' in imageConfig.value
+    ? imageConfig.value.value
+    : undefined
 ---
 
 <div
@@ -30,8 +38,8 @@ const position =
       ]}
     >
       {
-        (await image).default.format === 'gif' ? (
-          <Image
+        isGif(src) ? (
+          <img
             class="h-full w-full overflow-hidden object-cover"
             src={image}
             alt={alt || ''}
@@ -51,6 +59,11 @@ const position =
         )
       }
     </div>
-    {caption && <figcaption class="mt-2 text-xs text-gray-500 md:text-sm">{caption}</figcaption>}
+
+    {caption && (
+      <figcaption class="mt-2 text-xs text-gray-500 md:text-sm">
+        {caption}
+      </figcaption>
+    )}
   </figure>
 </div>

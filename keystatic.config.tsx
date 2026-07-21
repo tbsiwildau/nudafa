@@ -24,12 +24,11 @@ import {
 export default config({
   storage: {
     // https://keystatic.com/docs/github-mode#setting-up-git-hub-mode
-    // kind: KEYSTATIC_STORAGE_KIND,
-    kind: 'local',
-    //repo: {
-    //  owner: 'THWildau',
-    //  name: 'nudafa',
-    //},
+    kind: 'github',
+    repo: {
+      owner: 'tbsiwildau',
+      name: 'nudafa',
+    },
     // https://keystatic.com/docs/github-mode
   },
   ui: {

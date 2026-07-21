@@ -23,6 +23,7 @@ export const ChartHorizontal = ({
   className,
 }: Props) => {
   const maxValue = Math.max(...data.map(({ values }) => values.map(({ value }) => value)).flat())
+  const isDev = import.meta.env.DEV
 
   // QA of the data
   /* if (ASTRO_ENV !== 'production') {

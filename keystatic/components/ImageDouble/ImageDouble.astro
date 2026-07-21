@@ -9,11 +9,17 @@ const { src, srcSecond, alt, altSecond, caption, captionSecond, imageConfig } = 
 
 const orientation = imageConfig.discriminant
 const ratio = 'value' in imageConfig ? imageConfig.value : undefined
-const image1 = getImage(src)
-const image2 = getImage(srcSecond)
+
+// detect gifs
+const isGif = (src?: string) => src?.endsWith('.gif')
+
+// only optimize non-gifs
+const image1 = isGif(src) ? src : getImage(src)
+const image2 = isGif(srcSecond) ? srcSecond : getImage(srcSecond)
+
 const images = [
-  { image: image1, alt, caption },
-  { image: image2, alt: altSecond, caption: captionSecond },
+  { image: image1, alt, caption, isGif: isGif(src) },
+  { image: image2, alt: altSecond, caption: captionSecond, isGif: isGif(srcSecond) },
 ]
 ---
 
@@ -30,18 +36,32 @@ const images = [
             orientation === 'vertical' && ratio === '4/3' && 'aspect-[2/3]',
           ]}
         >
-          <Picture
-            class="h-full w-full overflow-hidden object-cover"
-            pictureAttributes={{ class: 'not-prose w-full' }}
-            src={image.image}
-            alt={alt || ''}
-            loading="lazy"
-            width={920 / 2 - 20 / 2}
-            formats={['jpg', 'avif']}
-            densities={[1.5, 2]}
-          />
+          {
+            image.isGif ? (
+              <img
+                class="h-full w-full object-cover"
+                src={image.image}
+                alt={image.alt || ''}
+                loading="lazy"
+              />
+            ) : (
+              <Picture
+                class="h-full w-full overflow-hidden object-cover"
+                pictureAttributes={{ class: 'not-prose w-full' }}
+                src={image.image}
+                alt={image.alt || ''}
+                loading="lazy"
+                width={920 / 2 - 20 / 2}
+                formats={['jpg', 'avif']}
+                densities={[1.5, 2]}
+              />
+            )
+          }
         </div>
-        <figcaption class="mt-2 text-xs md:text-sm">{image.caption}</figcaption>
+
+        <figcaption class="mt-2 text-xs md:text-sm">
+          {image.caption}
+        </figcaption>
       </figure>
     ))
   }
