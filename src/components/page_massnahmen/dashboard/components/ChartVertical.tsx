@@ -14,12 +14,6 @@ const unitsString: Record<NonNullable<Props['dataUnit']>, string> = { percent: '
 
 export const ChartVertical = ({ title, data, dataUnit, source, className }: Props) => {
   const maxValue = Math.max(...data.map(({ value }) => value))
-  const isDev = import.meta.env.DEV
-
-  // QA of the data
-  /* if (ASTRO_ENV !== 'production') {
-    if (!title) console.log('ChartVertical', 'ERROR', 'missing `title`')
-  } */
 
   return (
     <figure className={className}>
