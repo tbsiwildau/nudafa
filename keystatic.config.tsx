@@ -1,5 +1,4 @@
 import { config } from '@keystatic/core'
-import { KEYSTATIC_STORAGE_KIND } from 'astro:env/client'
 import { bicyclenetworkpagesKeystatic } from 'keystatic/bicyclenetworkPagesKeystatic'
 import { keystaticBookPageConfig } from 'keystatic/bookKeystatic'
 import { keystaticClosingEventPageConfig } from 'keystatic/closingEventKeystatic'
@@ -36,7 +35,7 @@ export default config({
   ui: {
     brand: {
       name: 'Nudafa',
-      // mark: () => <img src="/favicon-32x32.png" height={27} />,
+      mark: () => <img src="/favicon-32x32.png" height={27} />,
     },
     navigation: {
       Home: ['homepageintro', 'homepagemain'],
