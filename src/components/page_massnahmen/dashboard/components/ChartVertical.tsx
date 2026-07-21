@@ -1,5 +1,3 @@
-import { ASTRO_ENV } from 'astro:env/client'
-
 type Props = {
   title?: string
   data: {
@@ -18,9 +16,9 @@ export const ChartVertical = ({ title, data, dataUnit, source, className }: Prop
   const maxValue = Math.max(...data.map(({ value }) => value))
 
   // QA of the data
-  if (ASTRO_ENV !== 'production') {
+  /* if (ASTRO_ENV !== 'production') {
     if (!title) console.log('ChartVertical', 'ERROR', 'missing `title`')
-  }
+  } */
 
   return (
     <figure className={className}>

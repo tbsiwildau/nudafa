@@ -1,10 +1,11 @@
 import { astroBicyclenetworkpagesDefinition } from 'keystatic/bicyclenetworkPagesAstro'
+import { astroBookPageDefinition } from 'keystatic/bookAstro'
+import { astroClosingEventPageDefinition } from 'keystatic/closingEventAstro'
 import { homepageIntroAstro, homepageMainAstro } from 'keystatic/homepageAstro'
 import { astroImprintPageDefinition } from 'keystatic/imprintAstro'
 import { astroMeasuresDefinition } from 'keystatic/measuresAstro'
 import { astroMeasuretownsDefinition } from 'keystatic/measuretownsAstro'
 import { astroMeasuretypesDefinition } from 'keystatic/measuretypesAstro'
-import { astroPartnerCommunesPageDefinition } from 'keystatic/partnercommunespageAstro'
 import { astroPersonsDefinition } from 'keystatic/personsAstro'
 import { astroPressPageDefinition } from 'keystatic/pressAstro'
 import {
@@ -24,11 +25,12 @@ export const collections = {
   homepageintro: homepageIntroAstro,
   homepagemain: homepageMainAstro,
   presspage: astroPressPageDefinition,
+  closingeventpage: astroClosingEventPageDefinition,
+  bookpage: astroBookPageDefinition,
   researchpage: astroResearchPageDefinition,
   projectpartnerpageintro: astroProjectPartnerPageIntroDefinition,
   projectpartnerpagemain: astroProjectPartnerPageMainDefinition,
   imprintpage: astroImprintPageDefinition,
-  partnercommunespage: astroPartnerCommunesPageDefinition,
   // Collections
   subprojects: astroSubprojectsDefinition,
   subprojectstopics: astroSubprojectAndMeasureTopicsDefinition,

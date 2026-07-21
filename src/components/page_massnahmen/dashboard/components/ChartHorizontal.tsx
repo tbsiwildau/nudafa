@@ -1,5 +1,3 @@
-import { ASTRO_ENV } from 'astro:env/client'
-
 type Props = {
   title?: string
   /** @desc value in px */
@@ -27,7 +25,7 @@ export const ChartHorizontal = ({
   const maxValue = Math.max(...data.map(({ values }) => values.map(({ value }) => value)).flat())
 
   // QA of the data
-  if (ASTRO_ENV !== 'production') {
+  /* if (ASTRO_ENV !== 'production') {
     if (!title) console.log('ChartHorizontal', 'ERROR', 'missing `title`')
 
     const colorsWithoutLegend = data
@@ -43,7 +41,7 @@ export const ChartHorizontal = ({
         'for Chart',
         { title, data, legend, source },
       )
-  }
+  } */
 
   return (
     <figure className={className}>

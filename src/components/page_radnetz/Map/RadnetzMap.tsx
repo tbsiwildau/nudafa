@@ -11,6 +11,7 @@ import {
   Map,
   MapProvider,
   NavigationControl,
+  useMap,
   type ViewStateChangeEvent,
 } from 'react-map-gl/maplibre'
 import {
@@ -81,7 +82,15 @@ export const RadnetzMap = ({ children }: Props) => {
     setMapParams({ latitude, longitude, zoom })
   }
 
-  const handleMapLoad = (_: maplibregl.MapLibreEvent) => {
+  const handleMapLoad = (event: maplibregl.MapLibreEvent) => {
+    const map = event.target
+    console.log('handleMapLoad firing')
+    ;['label_village', 'label_town', 'label_city', 'label_city_capital'].forEach((id) => {
+      console.log(id, map.getLayer(id))
+      if (map.getLayer(id)) {
+        map.setLayoutProperty(id, 'visibility', 'none')
+      }
+    })
     $mapLoaded.set(true)
   }
 
@@ -147,7 +156,35 @@ export const RadnetzMap = ({ children }: Props) => {
           position={isScreenHorizontal ? 'top-left' : 'top-right'}
         />
         <MapDebugHelper />
+         <HideDuplicateLabels enabled={articleSlug == 'einleitung' || articleSlug == 'quellen-und-ziele'} />
       </Map>
     </MapProvider>
   )
+}
+
+const HideDuplicateLabels = ({ enabled }: { enabled: boolean }) => {
+  const { mainMap } = useMap()
+
+  useEffect(() => {
+    if (!mainMap) return
+    const map = mainMap.getMap()
+    const layerIds = ['label_village', 'label_town', 'label_city', 'label_city_capital']
+
+    const applyVisibility = () => {
+      layerIds.forEach((id) => {
+        if (map.getLayer(id)) {
+          map.setLayoutProperty(id, 'visibility', enabled ? 'none' : 'visible')
+        }
+      })
+    }
+
+    map.on('styledata', applyVisibility)
+    applyVisibility()
+
+    return () => {
+      map.off('styledata', applyVisibility)
+    }
+  }, [mainMap, enabled])
+
+  return null
 }

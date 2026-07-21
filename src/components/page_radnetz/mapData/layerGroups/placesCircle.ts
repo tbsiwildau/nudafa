@@ -25,7 +25,8 @@ export const placesCirlce: MapDataAndLegend[number]['sources'][number]['layers']
     minzoom: 9,
     layout: {
       'text-size': ['interpolate', ['linear'], ['zoom'], 10, 9, 22, 13],
-      'text-font': ['Open Sans SemiBold', 'Arial Unicode MS Regular'],
+      //'text-font': ['Open Sans SemiBold', 'Arial Unicode MS Regular'],
+      'text-font': ['Noto Sans Regular'],
       'icon-allow-overlap': true,
       'text-padding': 0,
       'text-offset': [0, 1],
