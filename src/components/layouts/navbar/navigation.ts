@@ -32,7 +32,6 @@ export const mainNavigation: TNavigation = {
       Begleitforschung: '/begleitforschung/',
       Abschlussveranstaltung: '/abschlussveranstaltung/',
       Presse: '/presse/',
-      Abschlussevent: '/abschlussevent/',
     },
     Teilprojekte: {
       ...subprojectsNavigation,
